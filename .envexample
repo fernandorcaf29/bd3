@@ -1,0 +1,5 @@
+DB_USER = XXXX
+DB_PASSWORD = XXXXX
+DB_HOST = 'localhost'
+DB_NAME = XXXX
+DB_PORT = '5432'
