@@ -38,7 +38,7 @@ queries = [
             WHERE ranked.row_num = 1
             ORDER BY ranked.mes 
         """,
-        "path": "C:/Users/rafae/Documents/python/bd3/queries/query04/output/maior_taxa_cancelamento_por_mes"
+        "path": "queries/query04/output/maior_taxa_cancelamento_por_mes"
     },
     {
         "name": "maior_taxa_cancelamento_por_mes_ano",
@@ -53,7 +53,7 @@ queries = [
                             ELSE (SUM(f.distTotal - f.distPercorrida) / SUM(f.distPercorrida)) * 100
                        END AS proporcao_nao_viajada 
                 FROM fVoo f
-                LEFT JOIN allAeroporto a ON (a.id = f.idAeroOrig AND a.id = f.idAeroDest)
+                LEFT JOIN allAeroporto a ON (a.id = f.idAeroOrig OR a.id = f.idAeroDest)
                 GROUP BY f.ano, f.mes, nomeAeroporto
             )
             SELECT ranked.mes, ranked.ano, ranked.nomeAeroporto, ranked.dist_nao_viajada, ranked.proporcao_nao_viajada  
@@ -64,7 +64,7 @@ queries = [
             WHERE ranked.row_num = 1
             ORDER BY ranked.ano, ranked.mes 
         """,
-        "path": "C:/Users/rafae/Documents/python/bd3/queries/query04/output/maior_taxa_cancelamento_por_mes_ano"
+        "path": "queries/query04/output/maior_taxa_cancelamento_por_mes_ano"
     },
     {
         "name": "menor_taxa_cancelamento_por_mes",
@@ -91,7 +91,7 @@ queries = [
             WHERE ranked.row_num = 1
             ORDER BY ranked.mes 
         """,
-        "path": "C:/Users/rafae/Documents/python/bd3/queries/query04/output/menor_taxa_cancelamento_por_mes"
+        "path": "queries/query04/output/menor_taxa_cancelamento_por_mes"
     },
     {
         "name": "menor_taxa_cancelamento_por_mes_ano",
@@ -118,7 +118,7 @@ queries = [
             WHERE ranked.row_num = 1
             ORDER BY ranked.ano, ranked.mes 
         """,
-        "path": "C:/Users/rafae/Documents/python/bd3/queries/query04/output/menor_taxa_cancelamento_por_mes_ano"
+        "path": "queries/query04/output/menor_taxa_cancelamento_por_mes_ano"
     }
 ]
 
