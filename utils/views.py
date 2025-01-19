@@ -28,9 +28,11 @@ def create_ordered_segments_view(spark):
 
     create_segments_view(spark)
 
+    view_name = "ordered_segments"
+
     spark.sql(
-    """
-        CREATE OR REPLACE TEMPORARY VIEW ordered_segments AS 
+    f"""
+        CREATE OR REPLACE TEMPORARY VIEW {view_name} AS 
         SELECT 
             *, 
             ROUND(s.qtdVoosTotal/CAST((SELECT SUM(v.qtdVoos) FROM fVoo AS v) AS DECIMAL) * 100, 4) AS perc
@@ -38,4 +40,32 @@ def create_ordered_segments_view(spark):
     """
     )
 
-    return "ordered_segments"
+    return view_name
+
+def create_delayed_per_airport(spark):
+
+    transform_table_into_view(spark, r'"fVoo"', "fVoo")
+
+    transform_table_into_view(spark, r'"dAeroporto"', "dAeroporto")
+
+    view_name = "delayed_per_airport"
+
+    spark.sql(
+    f"""
+        CREATE OR REPLACE TEMPORARY VIEW {view_name} AS
+        SELECT 
+            a.nome AS aeroporto,
+            ROUND(SUM(v.qtdAtrasados) * 100.0 / SUM(v.qtdVoos), 2) AS percAtraso
+        FROM
+            fVoo AS v
+        INNER JOIN
+            dAeroporto AS a
+        ON
+            v.idAeroOrig = a.id
+        GROUP BY
+            a.nome
+        ;
+    """
+    )
+
+    return view_name
