@@ -1,20 +1,15 @@
 import sys
 import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-from dto.readTable import transform_table_into_view
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
+from dto.readTable import transform_tables_into_view
 from config.sparkConfig import create_spark_session
-from utils.views import create_segments_view
 from utils.views import create_ordered_segments_view
 
 # Liste todas as companhias responsáveis por operar os principais trechos da pergunta anterior (ida OU volta)
 
 spark = create_spark_session()
 
-transform_table_into_view(spark, r'"fVoo"', "fVoo")
-
-transform_table_into_view(spark, r'"dAeroporto"', "dAeroporto")
-
-transform_table_into_view(spark, r'"dCompanhia"', "dCompanhia")
+transform_tables_into_view(spark, ["fVoo", "dAeroporto", "dCompanhia"])
 
 ordered_segments_view = create_ordered_segments_view(spark)
 
@@ -44,6 +39,6 @@ f"""
     ) AS fv ON TRUE;
 """)
 
-top_ten_segments_to_companies.rdd.saveAsTextFile("queries/query02/output")
+top_ten_segments_to_companies.rdd.saveAsTextFile("queries/page01/query02/output")
 
 spark.stop()

@@ -1,5 +1,8 @@
 Row(companhia='GOL')
+Row(companhia='BRITISH AIRWAYS PLC')
 Row(companhia='TOTAL')
 Row(companhia='TAM')
+Row(companhia='TAAG LINHAS AEREAS DE ANGOLA')
 Row(companhia='AZUL')
 Row(companhia='AVIANCA BRASIL')
+Row(companhia='ROYAL AIR MAROC')

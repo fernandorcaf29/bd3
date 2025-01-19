@@ -1,4 +1,4 @@
-from dto.readTable import transform_table_into_view
+from dto.readTable import transform_tables_into_view
 
 def create_segments_view(spark):
 
@@ -20,8 +20,6 @@ def create_segments_view(spark):
             dAeroporto AS aOrig ON fVoo.idAeroOrig = aOrig.id
         GROUP BY 
             aOrig.Cidade, aOrig.Pais, aDest.Cidade, aDest.Pais
-        ORDER BY
-            qtdVoosTotal DESC
     """)
 
     return view_name
@@ -29,9 +27,8 @@ def create_segments_view(spark):
 
 
 def create_ordered_segments_view(spark):
-    transform_table_into_view(spark, r'"fVoo"', "fVoo")
 
-    transform_table_into_view(spark, r'"dAeroporto"', "dAeroporto")
+    transform_tables_into_view(spark, ["dAeroporto", "fVoo"])
 
     create_segments_view(spark)
 
@@ -44,6 +41,9 @@ def create_ordered_segments_view(spark):
             *, 
             ROUND(s.qtdVoosTotal/CAST((SELECT SUM(v.qtdVoos) FROM fVoo AS v) AS DECIMAL) * 100, 4) AS perc
         FROM segments AS s
+        ORDER BY
+            perc 
+        DESC
     """
     )
 
@@ -53,9 +53,7 @@ def create_ordered_segments_view(spark):
 
 def create_delayed_per_airport(spark):
 
-    transform_table_into_view(spark, r'"fVoo"', "fVoo")
-
-    transform_table_into_view(spark, r'"dAeroporto"', "dAeroporto")
+    transform_tables_into_view(spark, ["dAeroporto", "fVoo"])
 
     view_name = "delayed_per_airport"
 

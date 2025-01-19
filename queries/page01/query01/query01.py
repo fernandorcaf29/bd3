@@ -1,6 +1,8 @@
 import sys
 import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
+
 from config.sparkConfig import create_spark_session
 from utils.views import create_ordered_segments_view
 
@@ -16,6 +18,6 @@ top_ten_segments = spark.sql(f"""
     LIMIT 10
 """)
 
-top_ten_segments.rdd.saveAsTextFile("queries/query01/output")
+top_ten_segments.rdd.saveAsTextFile("queries/page01/query01/output")
 
 spark.stop()

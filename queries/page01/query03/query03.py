@@ -1,6 +1,6 @@
 import sys
 import os
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
 from config.sparkConfig import create_spark_session
 from utils.views import create_delayed_per_airport
 
@@ -23,6 +23,6 @@ f"""
 """
 )
 
-delayed_per_airport_ordered_desc.rdd.saveAsTextFile("queries/query03/output")
+delayed_per_airport_ordered_desc.rdd.saveAsTextFile("queries/page01/query03/output")
 
 spark.stop()
