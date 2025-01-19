@@ -16,6 +16,6 @@ top_ten_segments = spark.sql(f"""
     LIMIT 10
 """)
 
-top_ten_segments.rdd.saveAsTextFile("queries/query01/output")
+top_ten_segments.rdd.saveAsTextFile("queries/queriesPag01/query01/output")
 
 spark.stop()

@@ -4,7 +4,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(
 from config.sparkConfig import create_spark_session
 from utils.views import create_delayed_per_airport
 
-# Qual o percentual de vôos atrasados (com tolerância de 5 minutos) para os 10 aeroportos com maior taxa de atraso
+# Idem para os 10 aeroportos com menor taxa de atraso
 
 spark = create_spark_session()
 
@@ -18,11 +18,11 @@ f"""
         {delayed_per_airport}
     ORDER BY 
         percAtraso
-    DESC
+    ASC
     LIMIT 10;
 """
 )
 
-delayed_per_airport_ordered_desc.rdd.saveAsTextFile("queries/query03/output")
+delayed_per_airport_ordered_desc.rdd.saveAsTextFile("queries/queriesPag01/query04/output")
 
 spark.stop()

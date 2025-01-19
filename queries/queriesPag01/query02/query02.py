@@ -44,6 +44,6 @@ f"""
     ) AS fv ON TRUE;
 """)
 
-top_ten_segments_to_companies.rdd.saveAsTextFile("queries/query02/output")
+top_ten_segments_to_companies.rdd.saveAsTextFile("queries/queriesPag01/query02/output")
 
 spark.stop()
