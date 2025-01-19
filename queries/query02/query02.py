@@ -16,9 +16,6 @@ transform_table_into_view(spark, r'"dAeroporto"', "dAeroporto")
 
 transform_table_into_view(spark, r'"dCompanhia"', "dCompanhia")
 
-
-create_segments_view(spark)
-
 ordered_segments_view = create_ordered_segments_view(spark)
 
 top_ten_segments_to_companies = spark.sql(
