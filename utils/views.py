@@ -1,9 +1,12 @@
 from dto.readTable import transform_table_into_view
 
 def create_segments_view(spark):
+
+    view_name = "segments"
+
     spark.sql(
-    """
-        CREATE OR REPLACE TEMPORARY VIEW segments AS
+    f"""
+        CREATE OR REPLACE TEMPORARY VIEW {view_name} AS
         SELECT 
             aOrig.Cidade AS cidade_origem,
             aOrig.Pais AS pais_origem,
@@ -20,6 +23,10 @@ def create_segments_view(spark):
         ORDER BY
             qtdVoosTotal DESC
     """)
+
+    return view_name
+
+
 
 def create_ordered_segments_view(spark):
     transform_table_into_view(spark, r'"fVoo"', "fVoo")
@@ -41,6 +48,8 @@ def create_ordered_segments_view(spark):
     )
 
     return view_name
+
+
 
 def create_delayed_per_airport(spark):
 
