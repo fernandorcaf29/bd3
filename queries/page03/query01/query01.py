@@ -12,7 +12,7 @@ aeroportos_cancelamento_view = create_aeroportos_cancelamento_view(spark)
 
 top_ten = spark.sql(
     f"""
-        SELECT * 
+        SELECT aeroporto, percCancelamento 
         FROM {aeroportos_cancelamento_view}
         ORDER BY
             percCancelamento DESC
