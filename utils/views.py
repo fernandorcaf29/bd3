@@ -14,6 +14,7 @@ def create_segments_view(spark):
             aOrig.Pais AS pais_origem,
             aDest.Cidade AS cidade_destino,
             aDest.Pais AS pais_destino,
+            SUM(fvoo.atrasoMinTotal) AS atrasoMinTotais,
             SUM(fVoo.qtdCancelados) AS qtdCanceladosTotal,
             SUM(fVoo.qtdAtrasados) AS qtdAtrasadosTotal,
             SUM(fVoo.qtdVoos) AS qtdVoosTotal
