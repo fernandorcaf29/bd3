@@ -10,15 +10,15 @@ spark = create_spark_session()
 
 principais_justificativas_maiores_taxas_view = create_principais_justificativas_maiores_taxas_view(spark)
 
-top_ten_segments = spark.sql(
+top_ten = spark.sql(
     f"""
         SELECT * 
         FROM {principais_justificativas_maiores_taxas_view}
     """
 )
 
-top_ten_segments.show()
+top_ten.show()
 
-top_ten_segments.rdd.saveAsTextFile("queries/page03/query04/output")
+top_ten.rdd.saveAsTextFile("queries/page03/query04/output")
 
 spark.stop()

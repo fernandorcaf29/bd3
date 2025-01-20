@@ -20,9 +20,3 @@ top_ten = spark.sql(
 top_ten.show()
 
 top_ten.rdd.saveAsTextFile("queries/page03/query01/output")
-
-spark.stop()
-
-
-
-
