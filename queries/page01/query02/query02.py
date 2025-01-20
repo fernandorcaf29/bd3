@@ -25,7 +25,8 @@ f"""
     CROSS JOIN LATERAL (
         SELECT 
             c.nome AS companhia 
-        FROM fVoo AS v
+        FROM 
+            fVoo AS v
         INNER JOIN dAeroporto AS aDest 
             ON v.idAeroDest = aDest.id
         INNER JOIN dAeroporto AS aOrig 

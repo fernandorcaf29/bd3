@@ -2,18 +2,24 @@ from dto.readTable import transform_tables_into_view
 
 def create_segments_view(spark):
 
+    transform_tables_into_view(spark, ["dAeroporto", "fVoo"])
+
     view_name = "segments"
 
     spark.sql(
     f"""
         CREATE OR REPLACE TEMPORARY VIEW {view_name} AS
-        SELECT 
+        SELECT
             aOrig.Cidade AS cidade_origem,
             aOrig.Pais AS pais_origem,
             aDest.Cidade AS cidade_destino,
             aDest.Pais AS pais_destino,
+            SUM(fvoo.atrasoMinTotal) AS atrasoMinTotais,
+            SUM(fVoo.qtdCancelados) AS qtdCanceladosTotal,
+            SUM(fVoo.qtdAtrasados) AS qtdAtrasadosTotal,
             SUM(fVoo.qtdVoos) AS qtdVoosTotal
-        FROM fVoo
+        FROM 
+            fVoo
         INNER JOIN
             dAeroporto AS aDest ON fVoo.idAeroDest = aDest.id
         INNER JOIN
@@ -38,7 +44,7 @@ def create_ordered_segments_view(spark):
     f"""
         CREATE OR REPLACE TEMPORARY VIEW {view_name} AS 
         SELECT 
-            *, 
+            *,
             ROUND(s.qtdVoosTotal/CAST((SELECT SUM(v.qtdVoos) FROM fVoo AS v) AS DECIMAL) * 100, 4) AS perc
         FROM segments AS s
         ORDER BY

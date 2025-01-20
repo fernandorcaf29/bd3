@@ -13,8 +13,15 @@ spark = create_spark_session()
 ordered_segments_view = create_ordered_segments_view(spark)
 
 top_ten_segments = spark.sql(f"""
-    SELECT *
-    FROM {ordered_segments_view}
+    SELECT 
+        cidade_origem,
+        pais_origem,  
+        cidade_destino,
+        pais_destino,
+        qtdVoosTotal,
+        perc   
+    FROM 
+        {ordered_segments_view}
     LIMIT 10
 """)
 
