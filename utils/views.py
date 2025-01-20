@@ -101,34 +101,6 @@ def create_aeroportos_cancelamento_view (spark):
                 dAeroporto AS a ON v.idAeroOrig = a.id
             GROUP BY
                 a.nome
-            ORDER BY
-                percCancelamento DESC
-            LIMIT 10;
-        """
-    )
-    return view_name
-
-def create_aeroportos_cancelamento_minimo_view (spark):
-
-    transform_tables_into_view(spark, ["dAeroporto", "fVoo"])
-
-    view_name = "aeroportos_cancelamento_minimo"
-
-    spark.sql (
-        f"""
-            CREATE OR REPLACE TEMPORARY VIEW {view_name} AS
-            SELECT 
-                a.nome AS aeroporto,
-                ROUND(SUM(v.qtdCancelados) * 100.0 / SUM(v.qtdVoos), 2) AS percCancelamento
-            FROM
-                fVoo AS v
-            INNER JOIN
-                dAeroporto AS a ON v.idAeroOrig = a.id
-            GROUP BY
-                a.nome
-            ORDER BY
-                percCancelamento ASC
-            LIMIT 10;
         """
     )
     return view_name

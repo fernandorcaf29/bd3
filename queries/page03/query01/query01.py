@@ -14,9 +14,14 @@ top_ten = spark.sql(
     f"""
         SELECT * 
         FROM {aeroportos_cancelamento_view}
+        ORDER BY
+            percCancelamento DESC
+        LIMIT 10;
     """
 )
 
 top_ten.show()
 
 top_ten.rdd.saveAsTextFile("queries/page03/query01/output")
+
+spark.stop()
