@@ -1,0 +1,33 @@
+mes,ano,nomeAeroporto,dist_nao_viajada,proporcao_nao_viajada
+1,2015,Itaituba,12662.0,Infinity
+2,2015,Itaituba,11688.0,Infinity
+3,2015,La Romana,52527.200000000004,Infinity
+4,2015,La Romana,42021.76,Infinity
+5,2015,La Romana,52527.200000000004,Infinity
+6,2015,La Romana,42021.76,Infinity
+7,2015,Cruzeiro Do Sul,36730.66000000001,Infinity
+8,2015,Eirunepe,12168.539999999997,Infinity
+9,2015,Mendoza,43511.04,Infinity
+10,2015,Mendoza,43511.04,Infinity
+11,2015,Brigadeiro Cabral,17265.160000000003,Infinity
+12,2015,Brigadeiro Cabral,17265.160000000003,Infinity
+1,2016,Mendoza,43511.04,Infinity
+2,2016,Mendoza,38676.48,Infinity
+3,2016,Aruba,85379.22,Infinity
+4,2016,Aruba,75892.64,Infinity
+5,2016,Brigadeiro Cabral,18049.940000000002,Infinity
+6,2016,Mendoza,43511.04,Infinity
+7,2016,Sorriso,18505.24,Infinity
+8,2016,Sorriso,19216.980000000003,Infinity
+9,2016,Sorriso,18505.24,Infinity
+10,2016,Brigadeiro Cabral,17265.160000000003,Infinity
+11,2016,Brigadeiro Cabral,16480.380000000005,Infinity
+12,2016,Brigadeiro Cabral,17265.160000000003,Infinity
+1,2017,Cheddi Jagan Intl,89708.2,Infinity
+2,2017,Ji-Parana,39177.12,Infinity
+3,2017,Curacao,68517.75000000003,Infinity
+4,2017,Ponta Grossa,8356.08,92.3076923076923
+5,2017,Usiminas,26015.260000000053,340.81632653061274
+6,2017,Usiminas,32558.020000000062,Infinity
+7,2017,Usiminas,32246.460000000057,Infinity
+8,2017,Governador Jorge Teixeira De Oliveira,761.23,66.55388273968771
