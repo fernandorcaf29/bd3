@@ -24,6 +24,6 @@ Para a aplicação foi utilizado PySpark como cliente para lidar com conexões a
 
 ## Modelagem
 
-Também é possível entregar o seguinte modelo na raíz do projeto como .png.
+Também é possível encontrar o seguinte modelo na raíz do projeto como .png.
 
 ![bd3 drawio (2)](https://github.com/user-attachments/assets/9c617bf9-c693-4fbf-b01e-0ee5e128eac9)
