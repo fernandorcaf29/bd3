@@ -1,7 +1,7 @@
 import sys
 import os
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
 from dto.readTable import transform_tables_into_view 
 from config.sparkConfig import create_spark_session
 spark = create_spark_session()
@@ -43,7 +43,7 @@ FROM (
 WHERE ranked.row_num = 1
 ORDER BY ranked.mes;
         """,
-        "path": "queries/query16/output"
+        "path": "queries/page04/query16/output"
 }
 
 print(f"Executando query: {query['name']}")

@@ -1,9 +1,9 @@
 import sys
 import os
-
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
 from dto.readTable import transform_tables_into_view 
 from config.sparkConfig import create_spark_session
+
 spark = create_spark_session()
 
 transform_tables_into_view(spark, ["dAeroporto", "fVoo"])
@@ -42,7 +42,7 @@ FROM (
 WHERE ranked.row_num = 1
 ORDER BY ranked.mes;
         """,
-        "path": "queries/query14/output"
+        "path": "queries/page04/query14/output"
 }
 
 print(f"Executando query: {query['name']}")
@@ -55,6 +55,7 @@ try:
     print(f"Resultado salvo em: {query['path']}")
 except Exception as e:
     print(f"Erro ao executar a query {query['name']}: {e}")
+
 
 # Fechando a SparkSession
 spark.stop()
