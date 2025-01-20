@@ -61,6 +61,7 @@ top_ten_segments = spark.sql(f"""
     SELECT *
     FROM {aeroportos_cancelamento()}
 """)
+
 top_ten_segments.show()
 # top_ten_segments.write.mode('overwrite').text("bd3/queries/outputteste")
 spark.stop()
