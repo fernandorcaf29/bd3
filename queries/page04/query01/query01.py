@@ -1,19 +1,18 @@
 import sys
 import os
-
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
 from dto.readTable import transform_tables_into_view 
 from config.sparkConfig import create_spark_session
+
 spark = create_spark_session()
 
 transform_tables_into_view(spark, ["dAeroporto", "fVoo"])
 
 query = {
-    "name": "maior_taxa_cancelamento_por_mes_ano",
+    "name": "maior_taxa_cancelamento_por_mes",
         "query": """
 WITH taxa_cancelamento AS (
     SELECT 
-        f.ano, 
         f.mes, 
         a.nome AS nomeAeroporto, 
         (SUM(f.qtdCancelados) / NULLIF(SUM(f.qtdVoos), 0)) * 100 AS taxa_cancelamento,
@@ -29,21 +28,21 @@ WITH taxa_cancelamento AS (
         FROM dAeroporto a 
         WHERE a.id = f.idAeroOrig OR a.id = f.idAeroDest
     ) a
-    GROUP BY f.ano, f.mes, a.nome
+    GROUP BY f.mes, a.nome
 )
-SELECT ranked.mes, ranked.ano, ranked.nomeAeroporto, ranked.dist_nao_viajada, ranked.proporcao_nao_viajada
+SELECT ranked.mes, ranked.nomeAeroporto, ranked.dist_nao_viajada, ranked.proporcao_nao_viajada
 FROM (
     SELECT t.*, 
            ROW_NUMBER() OVER (
-               PARTITION BY t.ano, t.mes 
+               PARTITION BY t.mes 
                ORDER BY t.taxa_cancelamento DESC, (t.qtdVoos * t.dist_nao_viajada) DESC
            ) AS row_num
     FROM taxa_cancelamento t
 ) AS ranked
 WHERE ranked.row_num = 1
-ORDER BY ranked.ano, ranked.mes;
+ORDER BY ranked.mes;
         """,
-        "path": "queries/page04/query15/output"
+        "path": "queries/page04/query01/output"
 }
 
 print(f"Executando query: {query['name']}")
@@ -56,6 +55,7 @@ try:
     print(f"Resultado salvo em: {query['path']}")
 except Exception as e:
     print(f"Erro ao executar a query {query['name']}: {e}")
+
 
 # Fechando a SparkSession
 spark.stop()

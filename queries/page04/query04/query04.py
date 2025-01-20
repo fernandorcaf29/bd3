@@ -44,7 +44,7 @@ FROM (
 WHERE ranked.row_num = 1
 ORDER BY ranked.ano, ranked.mes;
         """,
-        "path": "queries/page04/query17/output"
+        "path": "queries/page04/query04/output"
 }
 
 print(f"Executando query: {query['name']}")
