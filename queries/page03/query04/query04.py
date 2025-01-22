@@ -30,6 +30,7 @@ top_ten = spark.sql (
             FROM {aeroportos_cancelamento_view}
             ORDER BY
                 percCancelamento DESC
+            LIMIT 10
         ) AS ac ON vj.idAero = ac.aeroporto_id 
         GROUP BY 
             j.cod
